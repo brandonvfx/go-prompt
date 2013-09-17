@@ -21,11 +21,11 @@ Usage
 
 Add the following to your `.bashrc` (assuming $GOPATH/bin is in your path):
 
-        function _update_ps1() {
-           export PS1="$(go-prompt $? 2> /dev/null)"
-        }
+    function _update_ps1() {
+        export PS1="$(go-prompt $? 2> /dev/null)"
+    }
 
-        export PROMPT_COMMAND="_update_ps1"
+    export PROMPT_COMMAND="_update_ps1"
 
 
 Config
@@ -36,25 +36,22 @@ Save the default config to a file (~/.go_prompt)
 `go-prompt -write-config`
 
 
-Themes:
-+++++++
+###Themes:
 
-Config key: `theme`
-Type: Hash
-
-
-Symbols:
-++++++++
-
-Config key: `symbols`
-Type: Hash
+    Config key: `theme`
+    Type: Hash
 
 
-Enabling segments:
-++++++++++++++++++
+###Symbols:
 
-Config key: `segments`
-Type: Array of Strings
+    Config key: `symbols`
+    Type: Hash
+
+
+###Enabling segments:
+
+    Config key: `segments`
+    Type: Array of Strings
 
 
 
@@ -62,29 +59,28 @@ Type: Array of Strings
 Segments
 --------
 
-CwdSegment - Shows the current path
+**CwdSegment** - Shows the current path
 
-CmdSegment - Shows the exit status of the last command
+**CmdSegment** - Shows the exit status of the last command
 
-HostSegment - Shows the current host
+**HostSegment** - Shows the current host
 
-GitSegment - Shows the current git branch and status.
+**GitSegment** - Shows the current git branch and status.
 
-ReadOnlySegment - Shows if the current directory is writeable by you.
+**ReadOnlySegment** - Shows if the current directory is writeable by you.
 
-RvmSegment - Shows current rvm gemset
+**RvmSegment** - Shows current rvm gemset
 
-UserSegment - Shows current user
+**UserSegment** - Shows current user
 
-UserHostSegment - Shows the current user and host.
+**UserHostSegment** - Shows the current user and host.
 
-VirtualEvnSegment - Shows the current python virtualenv. 
+**VirtualEvnSegment** - Shows the current python virtualenv. 
 
 
 Change Log
 ----------
 
-0.1.0
-+++++
+###0.1.0
 
 Initial version. 
