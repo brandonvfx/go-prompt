@@ -3,6 +3,7 @@ package segment
 import (
 	"bytes"
 	"fmt"
+	"github.com/brandonvfx/go-prompt/config"
 	"github.com/brandonvfx/go-prompt/prompt"
 	"os/exec"
 	"regexp"
@@ -45,7 +46,7 @@ func git_status() (clean bool, extra string) {
 	return clean, extra
 }
 
-func GitSegment(last_bg int, config prompt.Config, buffer *bytes.Buffer) int {
+func GitSegment(last_bg int, conf config.Config, buffer *bytes.Buffer) int {
 	git_cmd := exec.Command("git", "branch")
 	var git_out bytes.Buffer
 	git_cmd.Stdout = &git_out
@@ -70,15 +71,15 @@ func GitSegment(last_bg int, config prompt.Config, buffer *bytes.Buffer) int {
 
 	var fg_color, bg_color int
 	if clean {
-		fg_color = config.Theme["repo_clean_fg"]
-		bg_color = config.Theme["repo_clean_bg"]
+		fg_color = conf.Theme["repo_clean_fg"]
+		bg_color = conf.Theme["repo_clean_bg"]
 	} else {
-		fg_color = config.Theme["repo_dirty_fg"]
-		bg_color = config.Theme["repo_dirty_bg"]
+		fg_color = conf.Theme["repo_dirty_fg"]
+		bg_color = conf.Theme["repo_dirty_bg"]
 	}
 
-	prompt.SegmentConnector(last_bg, bg_color, config, buffer)
-	
+	prompt.SegmentConnector(last_bg, bg_color, conf, buffer)
+
 	buffer.WriteString(prompt.Color(48, bg_color))
 	buffer.WriteString(prompt.Color(38, fg_color))
 	buffer.WriteString(fmt.Sprintf(" %s%s ", branch, extra))
