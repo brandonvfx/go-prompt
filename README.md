@@ -13,7 +13,7 @@ I really like the powerline-shell prompt, I used it every day for almost a year.
 Install
 -------
 
-`go install https://github.com/brandonvfx/go-prompt`
+`go get github.com/brandonvfx/go-prompt`
 
 
 Usage
