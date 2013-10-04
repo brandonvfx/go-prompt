@@ -75,7 +75,7 @@ Segments
 
 **UserHostSegment** - Shows the current user and host.
 
-**VirtualEvnSegment** - Shows the current python virtualenv. 
+**VirtualEnvSegment** - Shows the current python virtualenv. 
 
 
 Change Log
@@ -84,3 +84,12 @@ Change Log
 ###0.1.0
 
 Initial version. 
+
+
+Todo
+----
+
+- zsh support
+
+- more segments
+
