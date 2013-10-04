@@ -1,14 +1,14 @@
 go-prompt
 =========
 
-A prompt generator based on [powerline-shell](https://github.com/milkbikis/powerline-shell). It only supports bash right now because that is what I use.
+A prompt generator (bash only currently) based on [powerline-shell](https://github.com/milkbikis/powerline-shell).
 
 ![screenshot](https://raw.github.com/brandonvfx/go-prompt/master/screenshot.png)
 
 Why?
 ----
 
-I really like the powerline-shell prompt, I used it every day for almost a year. So when I was starting to learn Go I wanted my first *real* project to be something I used everyday and required learning a bunch of different things. So re-writing powerline-shell seemed like a *good* idea.
+I really like look and feel of the powerline-shell prompt and when I started to learn Go I wanted my first *real* project to be something I use everyday. So re-writing powerline-shell *seemed* like a *good* idea.
 
 
 Install
@@ -24,7 +24,7 @@ Download the binary from the releases page: https://github.com/brandonvfx/go-pro
 Usage
 -----
 
-Add the following to your `.bashrc` (assuming $GOPATH/bin is in your path):
+Add the following to your `.bashrc` (assuming `go-prompt` is in your path):
 
     function _update_ps1() {
         export PS1="$(go-prompt $? 2> /dev/null)"
