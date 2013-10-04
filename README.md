@@ -16,6 +16,10 @@ Install
 
 `go get github.com/brandonvfx/go-prompt`
 
+or
+
+Download the binary from the releases page: https://github.com/brandonvfx/go-prompt/releases
+
 
 Usage
 -----
