@@ -90,6 +90,8 @@ Initial version.
 Todo
 ----
 
+- Add tests
+
 - zsh support
 
 - more segments
