@@ -3,6 +3,7 @@ go-prompt
 
 A prompt generator based on [powerline-shell](https://github.com/milkbikis/powerline-shell). It only supports bash right now because that is what I use.
 
+![screenshot](https://raw.github.com/brandonvfx/go-prompt/master/screenshot.png)
 
 Why?
 ----
