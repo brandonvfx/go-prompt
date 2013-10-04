@@ -7,7 +7,7 @@ A prompt generator based on [powerline-shell](https://github.com/milkbikis/power
 Why?
 ----
 
-I really like the powerline-shell prompt, I used it every day for almost a year. So when I was starting to learn Go I wanted my first *real* project to be something I used everyday and required learning a bunch of differnet things. So re-writing powerline-shell seemed like a *good* idea.
+I really like the powerline-shell prompt, I used it every day for almost a year. So when I was starting to learn Go I wanted my first *real* project to be something I used everyday and required learning a bunch of different things. So re-writing powerline-shell seemed like a *good* idea.
 
 
 Install
@@ -67,7 +67,7 @@ Segments
 
 **GitSegment** - Shows the current git branch and status.
 
-**ReadOnlySegment** - Shows if the current directory is writeable by you.
+**ReadOnlySegment** - Shows if the current directory is writable by you.
 
 **RvmSegment** - Shows current rvm gemset
 
