@@ -100,3 +100,7 @@ Todo
 
 - more segments
 
+
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/brandonvfx/go-prompt/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
