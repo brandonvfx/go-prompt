@@ -12,11 +12,6 @@ import (
 )
 
 func ReadOnlySegment(cwd string, last_bg int, conf config.Config, buffer *bytes.Buffer) int {
-	cwd, err := os.Getwd()
-	if err != nil {
-		log.Println(err)
-		return last_bg
-	}
 	cwd_stat, err := os.Stat(cwd)
 	dir_uid := cwd_stat.Sys().(*syscall.Stat_t).Uid
 	dir_gid := cwd_stat.Sys().(*syscall.Stat_t).Gid
