@@ -2,50 +2,51 @@ package config
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
 )
 
-const ConfigFile = "$HOME/.go_prompt"
+const DefaultConfigPath = "$HOME/.go_prompt"
 
 var defaultConfig = `{
-    "maxdepth": 5,
-    "symbols": {
-        "separator": "\u2B80",
-        "separator_thin": "\u2B81",
-        "compressed_path": "\u2026",
-        "lock": "RO"
-    },
-    "theme": {
-        "path_bg": 237,
-        "path_fg": 250,
-        "cwd_fg": 254, 
-        "separator_fg": 244,
-        "cmd_passed_bg": 236, 
-        "cmd_passed_fg": 15,
-        "cmd_failed_bg": 161,
-        "cmd_failed_fg": 15,
-        "cmd_fg": 15,
-	    "virtual_env_bg": 35, 
-        "virtual_env_fg": 0,
-	    "repo_clean_bg": 148, 
-        "repo_clean_fg": 0,
-        "repo_dirty_bg": 161, 
-        "repo_dirty_fg": 15,
-        "rvm_bg": 44, 
-        "rvm_fg": 0,
-        "read_only_bg": 1,
-        "read_only_fg": 15
-    },
-    "settings": {
-        "CwdSegment": {
-            "maxdepth": 5,
-            "cwd_only": true
-        }
-    },
-    "segments": [ "RvmSegment", "VirtualEnvSegment", "CwdSegment", "GitSegment", "CmdSegment" ]
+	"maxdepth": 5,
+	"symbols": {
+		"separator": "\u2B80",
+		"separator_thin": "\u2B81",
+		"compressed_path": "\u2026",
+		"lock": "RO"
+	},
+	"theme": {
+		"path_bg": 237,
+		"path_fg": 250,
+		"cwd_fg": 254,
+		"separator_fg": 244,
+		"cmd_passed_bg": 236,
+		"cmd_passed_fg": 15,
+		"cmd_failed_bg": 161,
+		"cmd_failed_fg": 15,
+		"cmd_fg": 15,
+		"virtual_env_bg": 35,
+		"virtual_env_fg": 0,
+		"repo_clean_bg": 148,
+		"repo_clean_fg": 0,
+		"repo_dirty_bg": 161,
+		"repo_dirty_fg": 15,
+		"rvm_bg": 44,
+		"rvm_fg": 0,
+		"read_only_bg": 1,
+		"read_only_fg": 15
+	},
+	"settings": {
+		"CwdSegment": {
+			"maxdepth": 5,
+			"cwd_only": true
+		}
+	},
+	"segments": [ "UserSegment", "VirtualEnvSegment", "CwdSegment", "GitSegment", "CmdSegment" ]
 }`
 
 type Config struct {
@@ -57,31 +58,48 @@ type Config struct {
 }
 
 func LoadConfig() Config {
-	var file []byte
-	var err error
+	conf, err := ConfigFromFile(DefaultConfigPath)
 
-	expandedConfigFile := os.ExpandEnv(ConfigFile)
-	file, err = ioutil.ReadFile(expandedConfigFile)
-
-	if err != nil && !os.IsNotExist(err) {
-		log.Fatalln(err)
-	}
-
-	if err != nil && os.IsNotExist(err) {
-		file = []byte(defaultConfig)
-	}
-
-	var conf Config
-	err = json.Unmarshal(file, &conf)
 	if err != nil {
-		log.Fatalln(err)
+		conf = ConfigFromDefaults()
 	}
 
 	return conf
 }
 
-func WriteDefaultConfig() error {
-	expandedConfigFile := os.ExpandEnv(ConfigFile)
+func ConfigFromFile(filepath string) (Config, error) {
+	var conf Config
+	expandedConfigFile := os.ExpandEnv(filepath)
+	conf_data, err := ioutil.ReadFile(expandedConfigFile)
+
+	if err != nil && !os.IsNotExist(err) {
+		log.Fatalln(err)
+		return conf, errors.New("Error loading config file.")
+	}
+
+	if err != nil && os.IsNotExist(err) {
+		return conf, errors.New("Config file not found")
+	}
+
+	err = json.Unmarshal(conf_data, &conf)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	return conf, nil
+}
+
+func ConfigFromDefaults() Config {
+	var conf Config
+	conf_data := []byte(defaultConfig)
+	err := json.Unmarshal(conf_data, &conf)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	return conf
+}
+
+func WriteDefaultConfig(filepath string) error {
+	expandedConfigFile := os.ExpandEnv(filepath)
 	_, err := ioutil.ReadFile(expandedConfigFile)
 	if err != nil && !os.IsNotExist(err) {
 		return err

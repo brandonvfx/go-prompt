@@ -23,7 +23,6 @@ func init() {
 	flag.BoolVar(&printVersion, "v", false, "Print version and exit")
 }
 
-
 func usage() {
 	fmt.Println("go-prompt [-write-config] [-verison|-v] [command_exit_code]")
 	os.Exit(2)
@@ -34,14 +33,14 @@ func main() {
 	flag.Parse()
 
 	if writeConfig {
-		err := config.WriteDefaultConfig()
+		err := config.WriteDefaultConfig(config.DefaultConfigPath)
 		if err != nil {
 			log.Fatalln(err)
 		}
 		os.Exit(0)
 	}
-	
-	if printVersion{
+
+	if printVersion {
 		fmt.Printf("go-prompt v%v\n", Version)
 		os.Exit(0)
 	}
