@@ -32,11 +32,11 @@ func ReadOnlySegment(cwd string, last_bg int, conf config.Config, buffer *bytes.
 		return last_bg
 	} else if cwd_mode&0200 != 0 && dir_uid == uint32(os.Getuid()) {
 		return last_bg
-	} else {
-		prompt.SegmentConnector(last_bg, conf.Theme["read_only_bg"], conf, buffer)
-		buffer.WriteString(prompt.Color(38, conf.Theme["read_only_fg"]))
-		buffer.WriteString(prompt.Color(48, conf.Theme["read_only_bg"]))
-		buffer.WriteString(fmt.Sprintf(" %s ", conf.Symbols["lock"]))
-		return conf.Theme["read_only_bg"]
 	}
+
+	prompt.SegmentConnector(last_bg, conf.Theme["read_only_bg"], conf, buffer)
+	buffer.WriteString(prompt.Color(38, conf.Theme["read_only_fg"]))
+	buffer.WriteString(prompt.Color(48, conf.Theme["read_only_bg"]))
+	buffer.WriteString(fmt.Sprintf(" %s ", conf.Symbols["lock"]))
+	return conf.Theme["read_only_bg"]
 }
