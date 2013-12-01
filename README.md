@@ -1,6 +1,8 @@
 go-prompt
 =========
 
+[![Build Status](https://secure.travis-ci.org/brandonvfx/go-prompt.png?branch=master)](http://travis-ci.org/brandonvfx/go-prompt)
+
 A prompt generator (bash only currently) based on [powerline-shell](https://github.com/milkbikis/powerline-shell).
 
 ![screenshot](https://raw.github.com/brandonvfx/go-prompt/master/screenshot.png)
