@@ -10,7 +10,7 @@ A prompt generator (bash only currently) based on [powerline-shell](https://gith
 Why?
 ----
 
-I really like the look and feel of the powerline-shell prompt and when I started to learn Go I wanted my first *real* project to be something I use everyday. So re-writing powerline-shell *seemed* like a *good* idea.
+I really like the look and feel of the powerline-shell prompt and when I started to learn Go I wanted my first *real* project to be something I use everyday. So re-writing powerline-shell seemed like a *good* idea.
 
 
 Install
